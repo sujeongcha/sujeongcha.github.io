@@ -13,6 +13,11 @@
     height: 100%;
     width: auto;
   }
+  
+  #description {
+    font-size: 1.0rem;
+    font-weight: 300;
+  }
 </style>
 
 <div class="sidebar">
@@ -26,7 +31,7 @@
           {{ site.title }}
         </a>
       </h2>
-      <p class="lead">{{ site.description }}</p>
+      <p id="description">{{ site.description }}</p>
     </div>
 
     <nav class="sidebar-nav">
