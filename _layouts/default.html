@@ -2,6 +2,12 @@
 <html lang="en-us">
 
   {% include head.html %}
+  
+  <style media="screen">
+    #sidenote{
+      font-size: 80%;
+    }
+  </style>
 
   <body>
 
@@ -9,25 +15,18 @@
 
     <div class="content container">
 <!--       {{ content }} -->
-      <img src="C:\Users\sujeong\Documents\sujeongcha.github.io\images\hello.png" height="150px" 
+      <img src="./public/hello.png" height="150px" 
        title="Hand by Виталий Плут from the Noun Project">
 
       <h2>Hello World!</h2>
-      <p>Welcome to Sujeong's personal website. I'm a Master's studnet studying Data Science at New York University Center for Data Science. My biggest area of interest is <strong>LANGUAGE</strong>. I loved learning foreing languages - 我会说一点中文; 日本語が少しできます; Hablo un poco de español - and now I am enjoying the journey of learning how machines understand human's written and spoken words. In this site, you can find <a href="projects.html">my works</a> and <a href="studyNotes.html">study notes</a> related to Natural Language Processing and other Machine Learning models.</p>
+      <p>Welcome to Sujeong's personal website. I'm a Master's student studying Data Science at New York University Center for Data Science. 
+        My biggest area of interest is <strong>LANGUAGE</strong>. I loved learning foreign languages 
+        - 我会说一点中文; 日本語が少しできます; Hablo un poco de español - 
+        and now I am enjoying the journey of learning how machines understand human's written and spoken words. In this site, you can find <a href="projects.html">my works</a> and <a href="studyNotes.html">study notes</a> related to Natural Language Processing and other Machine Learning models.</p>
 
-      <h3>Education</h3>
-      <ul>
-        <li>Master of Science in Data Science, New York University, May 2021 (Expected)</li>
-        <li>Bachelor of Business Administration, Yonsei University, Feb 2015</li>
-        <li>Bachelor of Arts in Economics, Yonsei University, Feb 2015</li>
-      </ul>
-
-      <h3>Experiences</h3>
-      <ul>
-        <li>Product Analysis & Strategy, Hyundai & Kia Motors, Jan 2015 ~ Aug 2019</li>
-      </ul>
-
-      <p>📝Side Note: Sujeong(<a href="https://krdict.korean.go.kr/m/eng/searchResultView?mainSearchWord=%EC%88%98%EC%A0%95&ParaWordNo=65333&nationCode=6&nation=eng">수정</a>) means crystal&#128142; in Korean. Hence, the icon of the site title. </p>
+      <div id=sidenote>
+        <p>📝Side Note: Sujeong(<a href="https://krdict.korean.go.kr/m/eng/searchResultView?mainSearchWord=%EC%88%98%EC%A0%95&ParaWordNo=65333&nationCode=6&nation=eng">수정</a>) means crystal&#128142; in Korean. Hence, the icon of the site title. </p>
+      </div>
     </div>
 
   </body>
