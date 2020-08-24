@@ -12,6 +12,9 @@
     margin: 0 auto;
     height: 100%;
     width: auto;
+    
+  #smallfonts {
+    font-size: 15px;
   }
 </style>
 
@@ -49,9 +52,9 @@
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">Projects</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">Study Notes</a>
       <a class="sidebar-nav-item" href="{{ site.github.repo }}">Coding Everyday</a>
-      <span class="sidebar-nav-item">Last modified {{ site.version }}</span>
+      <span class="sidebar-nav-item" id="smallfonts">Last modified {{ site.version }}</span>
     </nav>
 
-    <p>&copy; {{ site.time | date: '%Y' }}. All rights reserved.</p>
+    <p><div id="smallfonts">&copy; {{ site.time | date: '%Y' }}. All rights reserved.</div></p>
   </div>
 </div>
