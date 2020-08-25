@@ -35,7 +35,7 @@
 	letter-spacing: 0px;
 }
 
-.timeline .column .title h1:before {
+.timeline .column .title h2:before {
 	content: "";
 	position: absolute;
 	left: -147px;
@@ -47,10 +47,10 @@
 	border-radius: 10px;
 }
 
-.timeline .column .title h2 {
+/* .timeline .column .title h2 {
 	margin-top: -60px;
 	font-size: 33px;
-}
+} */
 
 .timeline .column .description p {
 	font-size: 13px;
