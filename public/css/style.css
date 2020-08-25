@@ -48,16 +48,22 @@
 }
 
 .timeline .column .title h2 {
+	font-size: 1.5rem;
+	color: #999;
+}
+
+.timeline .column .title h3 {
 	margin-top: -60px;
-	font-size: 33px;
+	font-size: 1.5rem;
+	color: #313131;
 }
 
 .timeline .column .description p {
-	font-size: 13px;
+	font-size: 1.2rem;
 	line-height: 20px;
 	margin-left: 20px;
 	margin-top: 10px;
-	font-family: serif;
+	font-family: "Lato", sans-serif;
 }
 
 .timeline .column .description {
