@@ -17,10 +17,10 @@
 .timeline:before {
 	content: "";
 	position: absolute;
-	top: 40px;
+	top: 80px;
 	left: -20px;
 	width: 3px;
-	height: calc(100% - 80px);
+	height: 90%;
 	background: #202020;
 }
 
@@ -32,7 +32,7 @@
 	content: "";
 	position: absolute;
 	left: -57px;
-	top: 86px;
+	top: 30px;
 	width: 10px;
 	height: 10px;
 	background: #fff;
