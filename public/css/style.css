@@ -25,7 +25,7 @@
 }
 
 .timeline .column {
-	margin: 40px 40px 40px 30px;
+	margin: 0px 0px 0px 30px;
 }
 
 .timeline .column .title h2:before {
@@ -41,18 +41,18 @@
 }
 
 .timeline .column .title h2 {
-	font-size: 4vw;
-	color: #e2e1e1;
+	font-size: 30px;
+	color: rgba(0,0,0,0.1);
 }
 
 .timeline .column .title h3 {
-	margin-top: -25px;
-	font-size: 1.2rem;
+	margin-top: -20px;
+	font-size: 20px;
 	color: #313131;
 }
 
 .timeline .column .description p {
-	font-size: 1.2rem;
+	font-size: 16px;
 	line-height: inherit;
 	margin-left: 20px;
 	margin-top: 10px;
