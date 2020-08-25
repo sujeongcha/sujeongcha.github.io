@@ -10,12 +10,12 @@ permalink:        pretty
 title:            Sue Sujeong Cha
 tagline:          'Data Scientist'
 description:      'M.S. in Data Science Candidate @ <a href="https://cds.nyu.edu/">NYU CDS</a>'
-url:              http://hyde.getpoole.com
+url:              https://sujeongcha.github.io/
 baseurl:          /
 
 author:
   name:           'Sujeong Cha'
-  url:            https://twitter.com/mdo
+  url:            
 
 paginate:         5
 
