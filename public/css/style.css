@@ -53,7 +53,7 @@
 
 .timeline .column .description p {
 	font-size: 1.2rem;
-	line-height: 20px;
+	line-height: inherit;
 	margin-left: 20px;
 	margin-top: 10px;
 	font-family: "Lato", sans-serif;
