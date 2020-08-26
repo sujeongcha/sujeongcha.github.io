@@ -24,15 +24,15 @@
         <img src="https://sujeongcha.github.io/public/sujeong.jpg" class="rounded">
       </div>
       <h2>
-        <a href="https://sujeongcha.github.io">
-          {{ site.title }}
-        </a>
+        {{ site.title }}
+        <img src="https://img.icons8.com/wired/64/000000/github.png"/>
+        <img src="https://img.icons8.com/doodle/48/000000/linkedin--v2.png"/>
       </h2>
       <p class="lead">{{ site.description }}</p>
     </div>
 
     <nav class="sidebar-nav">
-<!--       <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a> -->
+      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
 
       {% comment %}
         The code below dynamically generates a sidebar nav of pages with
