@@ -17,10 +17,10 @@
 .timeline:before {
 	content: "";
 	position: absolute;
-	top: 55px;
+	top: 33px;
 	left: -20px;
 	width: 3px;
-	height: 88%;
+	height: 90%;
 	background: #202020;
 }
 
@@ -32,7 +32,7 @@
 	content: "";
 	position: absolute;
 	left: -57px;
-	top: 30px;
+	top: 8px;
 	width: 10px;
 	height: 10px;
 	background: #fff;
@@ -41,13 +41,13 @@
 }
 
 .timeline .column .title h2 {
-	font-size: 30px;
-	color: rgba(0,0,0,0.1);
+	font-size: 23px;
+	color: rgba(0,0,0,0.5);
 }
 
 .timeline .column .title h3 {
-	margin-top: -20px;
-	font-size: 20px;
+	margin-top: -10px;
+	font-size: 18px;
 	color: #313131;
 }
 
@@ -82,5 +82,5 @@
 }
 
 ul {
-	font-size: 15px;
+	font-size: 14px;
 }
