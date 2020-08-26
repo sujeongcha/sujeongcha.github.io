@@ -7,7 +7,7 @@ title: Housing Price Prediction in Manhattan
   #Machine Learning  #Supervised Learning  #Regression Models  #Support Vector Regressor
 </div>
 
-![placeholder](http://placehold.it/800x400 "Large example image")
+![placeholder](https://sujeongcha.github.io/public/housingPrice.jpg "Manhattan")
 
 #### Built on Poole
 
