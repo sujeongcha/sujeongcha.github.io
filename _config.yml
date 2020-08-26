@@ -19,7 +19,7 @@ author:
   url:            
 
 paginate:         3
-paginate_path:    "/blog/page:num/"
+paginate_path:    "/projects/page:num/"
 
 # Custom vars
 version:          08/23/2020
