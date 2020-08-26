@@ -5,7 +5,7 @@ title: Housing Price Prediction in Manhattan
 
 ![placeholder](https://sujeongcha.github.io/public/housingPrice.jpg "Manhattan")
 
-<div class="message" style="font-size:12px;">
+<div class="message" style="font-size:14px;">
   #Machine Learning  #Supervised Learning  #Regression Models  #Support Vector Regressor
 </div>
 
