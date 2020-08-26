@@ -17,7 +17,8 @@ author:
   name:           'Sujeong Cha'
   url:            
 
-paginate:         5
+paginate:         3
+paginate_path:    "/_posts/page:num/"
 
 # Custom vars
 version:          08/23/2020
