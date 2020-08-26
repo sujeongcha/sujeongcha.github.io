@@ -3,7 +3,7 @@ layout: post
 title: Housing Price Prediction in Manhattan
 ---
 
-<div class="message">
+<div class="message" style="font-size:12px;">
   #Machine Learning  #Supervised Learning  #Regression Models  #Support Vector Regressor
 </div>
 
