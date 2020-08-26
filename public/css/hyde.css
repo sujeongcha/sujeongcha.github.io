@@ -75,6 +75,20 @@ html {
   color: #fff;
 }
 
+/* Sidebar logos */
+.column_logo {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+.row::after{
+  content:"";
+  clear: both;
+  display: table;
+}
+  
+
 /* About section */
 .sidebar-about h1 {
   color: #fff;
