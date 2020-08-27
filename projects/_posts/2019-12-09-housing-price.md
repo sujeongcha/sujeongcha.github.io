@@ -3,12 +3,12 @@ layout: post
 title: Housing Price Prediction in Manhattan
 ---
 
-![placeholder](https://sujeongcha.github.io/public/housingPrice.jpg "Manhattan")
+![placeholder](https://sujeongcha.github.io/public/housingPrice.jpg "Photo by Brandon Jacoby on Unsplash")
 
 <div class="message">
   <ul>
     <li> Task: Supervised learning > Regression </li>
-    <li> Models: Support Vector, Linear/Polynomial, Decision Tree, Random Forest Regressor
+    <li> Models: Support Vector, Linear/Polynomial, Decision Tree, Random Forest Regressor </li>
     <li> Language: Python </li> 
   </ul>
 </div>
