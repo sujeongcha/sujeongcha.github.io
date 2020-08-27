@@ -1,22 +1,22 @@
 ---
 layout: post
-title: Building Scalable Books Recommender Systems
+title: Building Scalable Book Recommender Systems
 ---
 
-![placeholder](https://sujeongcha.github.io/public/bookRecommend.jpg "<span>Photo by <a href="https://unsplash.com/@christinhumephoto?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Christin Hume</a> on <a href="https://unsplash.com/s/photos/book?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>")
+![placeholder](https://sujeongcha.github.io/public/bookRecommend.jpg "Photo by Christin Hume on Unsplash")
 
 <div class="message">
   <ul>
-    <li> Task: Supervised learning > Regression </li>
-    <li> Models: Support Vector, Linear/Polynomial, Decision Tree, Random Forest Regressor
-    <li> Language: Python </li> 
+    <li> Task: Recommender Systems based on Machine Learning </li>
+    <li> Models: Alternating Least Squares with NMSLIB HNSW indexing for fast search
+    <li> Language: PySpark (on Apache Spark) </li> 
   </ul>
 </div>
 
-#### Are you sure you're paying the right price for you house?
+#### Recommender needs big, big, big data...
 
-Unless you are a real-estate guru, purchasing your first home, or even selling one is a very painful experience. There may be several features that you appreciate which may or may not align with the features which the seller appreciates, and closing prices are often met somewhere in the middle. However, how do you know that you are paying or receiving the “Fair” market value of the property of interest? How do you even set a “starting point” for your dream purchase or sale? Our goal is to assist those who are in need of such “starting point” by providing them the estimated “market” value of the property of interest via leveraging data and machine learning.
+This project aims to build a book recommender system using Apache Spark’s machine learning library, MLlib. Python, a traditional but popular tool, offers easy-to-use machine learning packages, but they are deployed on a single machine and consequently restricted in terms of scalability. On the other hand, Spark takes advantage of parallelism and can speed up ML performance on “Big Data”. Hence, Spark MLlib is an appropriate choice for our book interactions dataset considering its size (4.32 GB in CSV).
 
-We've implmented six different regression models, and Support Vector Regressor resulted in the highest R-squared (0.733). Moreover, among many features of a house, we found that the nubmer of bathrooms and the number of bedrooms influence a house's price the most. 
+However, we could not utilize the full dataset as the job was aborted on NYU's Hadoop cluster (Dumbo) due to OutofMemoryError. Hence, the precision results may not be satisfactory, but it was still a good starting point for implementing machine learning models on a large-scale basis.
 
-Final report and Python scripts can be found <a href="https://github.com/sujeongcha/RGTM">HERE</a>.
+Final report and PySpark scripts can be found <a href="https://github.com/sujeongcha/team-deep-coral">HERE</a>.
