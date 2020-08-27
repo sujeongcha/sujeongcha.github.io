@@ -1,9 +1,7 @@
 # Dependencies
 # markdown:         redcarpet
 highlighter:      rouge
-gems :
-  - jekyll-paginate
-  - jekyll-paginate-multiple
+plugins:          jekyll-paginate
 
 # Permalinks
 permalink:        pretty
