@@ -23,7 +23,7 @@ author:
 # paginate:         3
 paginate_multiple:
   - paginate: 3
-    paginate_path: '/projects/page:num/'
+    paginate_path: "/projects/:num/"
     sub_dir: '/projects'
   - paginate: 3
     paginate_path: '/studyNotes/page:num/'
