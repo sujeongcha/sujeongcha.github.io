@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Housing Price
+title: Housing Price Subdirectory
 ---
 
 ![placeholder](https://sujeongcha.github.io/public/housingPrice.jpg "Manhattan")
