@@ -1,7 +1,9 @@
 # Dependencies
 # markdown:         redcarpet
 highlighter:      rouge
-plugins:          [jekyll-paginate]
+gems :
+  - jekyll-paginate
+  - jekyll-paginate-multiple
 
 # Permalinks
 permalink:        pretty
@@ -18,7 +20,14 @@ author:
   name:           'Sujeong Cha'
   url:            
 
-paginate:         3
+# paginate:         3
+paginate_multiple:
+  - paginate: 3
+    paginate_path: '/blog/page:num/'
+    sub_dir: '/projects'
+  - paginate: 3
+    paginate_path: '/blog/de/page:num/'
+    sub_dir: '/studyNotes'
 
 # Custom vars
 version:          08/23/2020
