@@ -8,7 +8,7 @@ title: Building Scalable Book Recommender Systems
 <div class="message">
   <ul>
     <li> Task: Recommender Systems based on Machine Learning </li>
-    <li> Models: Alternating Least Squares with NMSLIB HNSW indexing for fast search
+    <li> Models: Alternating Least Squares with NMSLIB HNSW indexing for fast search </li>
     <li> Language: PySpark (on Apache Spark) </li> 
   </ul>
 </div>
