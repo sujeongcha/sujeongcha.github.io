@@ -23,7 +23,7 @@ author:
 # paginate:         3
 paginate_multiple:
   - paginate: 3
-    paginate_path: '/blog/page:num/'
+    paginate_path: '/projects/page:num/'
 
 
 # Custom vars
