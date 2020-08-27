@@ -24,6 +24,7 @@ author:
 paginate_multiple:
   - paginate: 3
     paginate_path: '/projects/page:num/'
+    sub_dir: '/projects'
 
 
 # Custom vars
