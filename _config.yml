@@ -20,15 +20,7 @@ author:
   name:           'Sujeong Cha'
   url:            
 
-# paginate:         3
-paginate_multiple:
-  - paginate: 3
-    paginate_path: "/projects/:num/"
-    sub_dir: '/projects'
-  - paginate: 3
-    paginate_path: '/studyNotes/page:num/'
-    sub_dir: '/studyNotes'
-
+paginate:         3
 
 # Custom vars
 version:          08/23/2020
