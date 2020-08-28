@@ -1,0 +1,640 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>22. Elementary Graph Algorithms</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c96fb28c-ff6f-4769-aad8-7987a4ea644d" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">⏲️</span></div><h1 class="page-title">22. Elementary Graph Algorithms</h1><table class="properties"><tbody><tr class="property-row property-row-created_time"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesCreatedAt"><path d="M6.98643729,14.0000972 C5.19579566,14.0000972 3.40419152,13.3106896 2.04245843,11.9323606 C-0.681017475,9.21200555 -0.680780251,4.76029539 2.04293482,2.04012507 C4.76664406,-0.68004331 9.22427509,-0.68004331 11.9480135,2.04013479 C13.272481,3.36277455 14,5.1330091 14,6.99552762 C14,8.87640182 13.2721894,10.6285043 11.9480135,11.9509302 C10.5679344,13.3105924 8.77756503,14.0000972 6.98643729,14.0000972 Z M10.2705296,7.00913883 L10.2705296,8.46099754 L10.2705296,8.65543362 L10.076181,8.65543362 L8.6543739,8.65543362 L5.72059514,8.65543362 L5.52619796,8.65543362 L5.52619796,8.46099754 L5.52619796,5.52541044 L5.52619796,3.37946773 L5.52619796,3.18502193 L5.72059514,3.18502193 L7.17253164,3.18502193 L7.36692883,3.18502193 L7.36692883,3.37946773 L7.36692883,6.81467358 L10.076181,6.81467358 L10.2705296,6.81467358 L10.2705296,7.00913883 Z M12.1601539,6.99552762 C12.1601539,5.61697497 11.6190112,4.32597154 10.6393933,3.34769528 C8.63253764,1.34336744 5.35197452,1.34061603 3.34153136,3.33944106 C3.33868273,3.34219247 3.33607716,3.34494388 3.33322852,3.34769528 C1.32397148,5.35459953 1.32372842,8.63641682 3.33322852,10.6433794 C5.34295224,12.6504489 8.62968901,12.6504489 10.6393933,10.6433794 C11.6190112,9.66506426 12.1601539,8.37408027 12.1601539,6.99552762 Z"></path></svg></span>Created</th><td><time>@Jul 26, 2020 9:57 PM</time></td></tr></tbody></table></header><div class="page-body"><h2 id="19e1c83a-1fe8-47fc-b035-acb82889002a" class="">B.4 Graphs</h2><ul id="8af1cdc0-3704-4477-9898-6d2105889b3b" class="bulleted-list"><li><strong><mark class="highlight-teal_background">directed graph (digraph)</mark></strong>: E is a binary relation on V, self-loop allowed
+<mark class="highlight-teal_background"><strong>undirected graph</strong></mark>: no direction, self-loop NOT allowed</li></ul><ul id="ebba451c-3c84-4dd7-b153-c3a80912275e" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>adjacent</strong></mark>: v is adjacent to u if (u,v) is an edge
+<mark class="highlight-teal_background"><strong>degree</strong></mark>: in-degree + out-degree (0 degree → &quot;isolated&quot;)</li></ul><ul id="e5667ad6-fc4e-44fd-8b20-7f35ffca1b4a" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>simple path</strong></mark>: if all vertices in the path are distinct
+<mark class="highlight-teal_background"><strong>simple cycle</strong></mark>: cycle with distinct vertices
+<mark class="highlight-teal_background"><strong>simple directed graph</strong></mark>: directed graph with no self-loop</li></ul><ul id="989b587a-9253-4c02-9c35-374f72cd2ef4" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>connected</strong></mark>: for undirected; every vertex is reachable from all other vertices
+<mark class="highlight-teal_background"><strong>strongly connected</strong></mark>: for directed; every two vertices are reachable from each other</li></ul><ul id="5878087f-4257-4bfa-a0ba-ea0ab4468377" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>complete graph</strong></mark>: undirected graph in which every pair of vertices is adjacent
+<mark class="highlight-teal_background"><strong>bipartite graph</strong></mark>: undirected graph in which V can be partitioned into two sets</li></ul><ul id="4e62ac59-afa1-4130-a5a6-7d09fbc08946" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>forest</strong></mark>: acyclic, undirected graph
+<mark class="highlight-teal_background"><strong>(free) tree</strong></mark>: connected, acyclic, undirected graph
+<mark class="highlight-teal_background"><strong>DAG</strong></mark>: acyclic, directed graph</li></ul><ul id="653c4c3f-6e14-43bc-8b1d-035a9538dd65" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>multigraph</strong></mark>: undirected graph with multiple edges between vertices and self-loops
+<mark class="highlight-teal_background"><strong>hypergraph</strong></mark>: undirected graph with hyperedges connecting an arbitrary subset of vertices</li></ul><ul id="c90a5ed4-5a76-4483-946b-14f960a40ebd" class="bulleted-list"><li><mark class="highlight-teal_background"><strong>contraction</strong></mark>: in an undirected graph, u, v are contracted into a single vertex</li></ul><h2 id="b7790c9d-6229-4655-97ca-b37d5793fcb0" class="">B.5 Trees</h2><h3 id="18cce860-669b-4c99-a759-da1a41a4d31b" class="">B.5.1 Free Trees</h3><figure id="2a17c399-2fe4-4808-bab4-ad5dfffcb0b7" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled.png"><img style="width:895px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled.png"/></a></figure><figure id="14dc8773-16e8-4b26-aa77-41f1e2325e43" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%201.png"><img style="width:844px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%201.png"/></a></figure><h3 id="5a916d19-99df-4b5c-9468-acba7fa43e31" class="">B.5.2 Rooted and ordered trees</h3><ul id="ea835d35-4aa0-4a49-bc08-850908c8ea6f" class="bulleted-list"><li><mark class="highlight-yellow_background">every node is both an ancestor and a descendant of itself</mark></li></ul><ul id="8a207bee-c855-421c-9ce4-4f89994d9301" class="bulleted-list"><li>ordered tree: a rooted tree in which the children of each node are ordered 
+                      (being right/left child doesn&#x27;t mater)</li></ul><h3 id="178e58eb-0dd5-4ac7-8595-83a45762ffc4" class="">B.5.3 Binary and positional trees</h3><ul id="30c36ab7-1892-4bf3-ab14-827d43250ba2" class="bulleted-list"><li>binary tree: either 1) contains no node or 2) (root, left subtree, right subtree)</li></ul><ul id="0d3cfdd3-8dcf-47d1-b90d-c87f4ee9892f" class="bulleted-list"><li>positional tree: the children of a node are labeled with distinct positive integers</li></ul><ul id="b239664d-a894-4588-9cdf-5ba98e6be526" class="bulleted-list"><li>a complete binary tree has <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mi>h</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">2^h-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.932438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.849108em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">h</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></span><span>﻿</span></span> internal nodes</li></ul><p id="14791b94-fd80-4ec1-a5b9-12d34d9053b1" class="">
+</p><h2 id="b035dc7e-45d3-4d1b-a32f-1172673bfb44" class="">22.1 Representations of graphs</h2><figure id="cc85e2c6-de9f-4d55-908e-120bad1396ba" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%202.png"><img style="width:969px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%202.png"/></a></figure><h3 id="0cbc1fcc-3527-437d-a8b0-d4f0039acdb6" class="">As adjacency lists</h3><ul id="dbf2b87f-736b-4b22-85a8-81a0fcd89142" class="bulleted-list"><li>a compact way to represent <mark class="highlight-teal_background"><strong>spare</strong></mark> graphs (for which <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|E|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span></span></span></span></span><span>﻿</span></span> is much less than <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>V</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">|V|^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span>)</li></ul><ul id="2dcac437-e40e-44a4-9c56-46f00696e964" class="bulleted-list"><li>for a directed graph, the sum of the lengths of all the adjacency lists is <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|E|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span></span></span></span></span><span>﻿</span></span>
+for an undirected, the sum of the lengths of all the adjacency lists is <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi mathvariant="normal">∣</mi><mi>E</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">2|E|</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">∣</span></span></span></span></span><span>﻿</span></span>
+⇒ memory/scan: <mark class="highlight-teal_background"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Theta(V+E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span></mark></li></ul><ul id="723e9aa4-d972-4573-985f-a17c784287dc" class="bulleted-list"><li>cons: no quicker way to determine whether a given edge is present in the graph</li></ul><h3 id="d9bbe5d4-d48b-48b1-8dc7-3f48133c7369" class="">As adjacency matrix</h3><ul id="2149f22e-5c6e-4cd0-831b-ec741da7ff2d" class="bulleted-list"><li>preferable when the graph is dense</li></ul><ul id="94bd82d3-ae94-43fa-b964-3455dbae6039" class="bulleted-list"><li>memory requirement: <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><msup><mi>V</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Theta(V^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span></li></ul><ul id="7eb0fdaf-1717-400d-a71f-86201712526f" class="bulleted-list"><li>advantage for unweighted graph as it require only one bit per entry</li></ul><h2 id="aa9e12d0-380a-4a5f-ac36-fbd632177fbe" class="">22.2 Breadth-First-Search</h2><ul id="09e310f1-8c46-4c30-bc09-a87b607d5675" class="bulleted-list"><li>explores the edges of G to “discover” <strong><mark class="highlight-teal_background">every vertex that is reachable from s</mark></strong> (source vertex)</li></ul><ul id="aaeef427-a10a-4834-a98c-e077a21fd47a" class="bulleted-list"><li>discovers all vertices at distance k from s before discovering any vertices at distance k + 1</li></ul><figure id="6f0c3f74-2195-4dfc-87d8-5a9c26227353" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%203.png"><img style="width:849px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%203.png"/></a></figure><ul id="5f9c44c3-dfd4-47d7-929f-8be393158868" class="bulleted-list"><li><strong>the result may depend upon the order in which the neighbors of a given vertex are visited</strong> in line 12: the breadth-first tree may vary, but the distances d computed by the algorithm will not</li></ul><ul id="039806e3-55da-4ae8-8820-ffcda036532c" class="bulleted-list"><li><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><msub><mo stretchy="false">)</mo><mtext>queue</mtext></msub><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mi>E</mi><msub><mo stretchy="false">)</mo><mtext>scanning adj</mtext></msub><mo>=</mo><mtext> </mtext></mrow><annotation encoding="application/x-tex">O(V)_\text{queue}+O(E)_\text{scanning adj} = ~ </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">queue</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361079999999999em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight">scanning adj</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace nobreak"> </span></span></span></span></span><span>﻿</span></span><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(V+E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span>, linear time in the size of the adjacency-list</li></ul><figure id="71140b44-cc14-432a-992b-37aa9900724e" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%204.png"><img style="width:839px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%204.png"/></a></figure><figure id="f8a9de78-bd2b-4959-b9dc-1d89a7bc03f9" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%205.png"><img style="width:842px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%205.png"/></a></figure><h3 id="b37b401a-400e-4e0a-8ab6-f3340b183a0a" class="">Breadth-first-tree</h3><figure id="f39cb67e-5db6-417a-8f1d-4032844ebf49" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%206.png"><img style="width:851px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%206.png"/></a></figure><figure id="a13f18cb-a63f-4755-9a51-a06a07321bc0" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%207.png"><img style="width:835px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%207.png"/></a></figure><p id="148a82b2-775c-434f-b7c3-998478465624" class="">→ O(V)</p><h2 id="16512a18-d4c8-4641-bc92-fad59d4514c3" class="">22.3 Depth-First-Search</h2><ul id="f99745b0-684e-4c11-888e-14b69e7a4857" class="bulleted-list"><li>Unlike breadth-first search, whose predecessor subgraph forms a tree, the predecessor subgraph produced by a depth-first search may be composed of several trees (<mark class="highlight-teal_background"><strong>depth-first-forest</strong></mark>)</li></ul><ul id="bb8c8b81-f839-4186-abaa-7b152983a670" class="bulleted-list"><li>depth-first search also <mark class="highlight-teal_background"><strong>timestamps</strong></mark><strong> </strong>each vertex (v.d and v.f)</li></ul><figure id="0a7b6333-5969-43a2-bd63-863102660d6f" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%208.png"><img style="width:1059px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%208.png"/></a></figure><ul id="ac5fd566-c790-4e92-9bfe-1d5e13751b2f" class="bulleted-list"><li>running time: <mark class="highlight-teal_background"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Theta(V+E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span></mark></li></ul><figure id="5205c0be-0774-452c-95e3-8114b46ab643" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%209.png"><img style="width:1051px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%209.png"/></a></figure><figure id="c831ba58-8d3c-4db0-a3a3-38a9a4474ee4" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2010.png"><img style="width:1041px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2010.png"/></a></figure><h3 id="ac6a5a48-1686-4116-89d7-c3259658b305" class="">Classification of edges (u, v)</h3><ol id="71b88b76-2843-4317-b525-44b8781e4c41" class="numbered-list" start="1"><li><mark class="highlight-teal_background"><strong>Tree edges (v WHITE)</strong></mark>: edges in the depth-first forest</li></ol><ol id="c4835439-7824-4890-a2cd-c34d2410b8cb" class="numbered-list" start="2"><li><mark class="highlight-teal_background"><strong>Back edges (v GRAY)</strong></mark>: connecting u to an ancestor in a depth-first tree, including self-loops</li></ol><ol id="395c8e65-9d4b-4f45-aa40-07b0fc41fd5e" class="numbered-list" start="3"><li><mark class="highlight-teal_background"><strong>Forward edges (v BLACK)</strong></mark>: nontree edges connecting u to a descendant in a depth-first tree</li></ol><ol id="33c3dc78-24ca-4f73-8722-990f81dd2389" class="numbered-list" start="4"><li><mark class="highlight-teal_background"><strong>Cross edges (v BLACK)</strong></mark>: all other edges (between vertices in the same depth-first tree, as long as one vertex is not an ancestor of the other, or between vertices in different depth-first trees)</li></ol><ul id="ac5e8d38-20c4-4832-a305-318e1240fa3d" class="bulleted-list"><li><mark class="highlight-yellow_background">In a DFS of an</mark><mark class="highlight-yellow_background"><em> undirected </em></mark><mark class="highlight-yellow_background">graph G, every edge of G is either a tree edge or a back edge</mark></li></ul><h2 id="140938f7-c3a2-4363-b561-d415c7636dce" class="">22.4 Topological sort on <mark class="highlight-yellow_background">DAG</mark></h2><ul id="a3de0168-97e8-4c52-92dc-41960f7a08fe" class="bulleted-list"><li>sort in reverse order of the vertices&#x27; finishing times <mark class="highlight-red_background"><strong>(insert in onto the front of a linked list)</strong></mark></li></ul><figure id="5f7dc5ea-4e49-45c9-b246-09d8b67d9735" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2011.png"><img style="width:1036px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2011.png"/></a></figure><ul id="07695f54-49fd-45fd-90da-d6d48b511c40" class="bulleted-list"><li><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><msub><mo stretchy="false">)</mo><mrow><mi>D</mi><mi>F</mi><mi>S</mi></mrow></msub><mo>+</mo><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><msub><mo stretchy="false">)</mo><mrow><mi>i</mi><mi>n</mi><mi>s</mi><mi>e</mi><mi>r</mi><mi>t</mi></mrow></msub><mo>=</mo><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Theta(V+E)_{DFS}+O(1)_{insert}=\Theta(V+E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02778em;">D</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">F</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span></li></ul><h2 id="c28318a0-917a-41ef-b179-7a57cb855f06" class="">22.5 Strongly connected components</h2><figure id="6bc7ebb7-4c54-4d2c-87d1-07bc672acbd0" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2012.png"><img style="width:1040px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2012.png"/></a></figure><ul id="14c5f897-f37c-4313-b74e-056a5ecf0553" class="bulleted-list"><li>running time: <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">Θ</mi><mo stretchy="false">(</mo><mi>V</mi><mo>+</mo><mi>E</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\Theta(V+E)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Θ</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mclose">)</span></span></span></span></span><span>﻿</span></span></li></ul><ul id="5a445ccf-dc73-4938-b729-34bbb0eab4bd" class="bulleted-list"><li><mark class="highlight-red_background"><code><strong>result in DAG</strong></code></mark></li></ul><figure id="afddcf25-d763-499d-af9b-096520d47c64" class="image"><a href="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2013.png"><img style="width:1046px" src="22%20Elementary%20Graph%20Algorithms%20c96fb28cff6f4769aad87987a4ea644d/Untitled%2013.png"/></a></figure></div></article></body></html>
