@@ -47,7 +47,7 @@
         `layout: page` in the front-matter. See readme for usage.
       {% endcomment %}
 
-      {% assign pages_list = site.pages | sort:"order" %}
+<!--       {% assign pages_list = site.pages | sort:"order" %}
       {% for node in pages_list %}
         {% if node.title != null %}
           {% if node.layout == "page" %}
@@ -64,8 +64,17 @@
             {% endif %}
           {% endif %}
         {% endif %}
-      {% endfor %}
-     
+      {% endfor %} -->
+      
+      <a class="sidebar-nav-item" href="https://sujeongcha.github.io/about.html">About</a>
+      <a class="sidebar-nav-item" href="https://sujeongcha.github.io/projects/index.html">Projects</a>
+      <a class="dropdown-btn">Study Notes
+        <i class="fa fa-caret-down"></i>
+      </a>
+      <div class="dropdown-container">
+        <a href="https://sujeongcha.github.io/studyNotes/nlp.html">NLP</a><br>
+        <a href="https://sujeongcha.github.io/studyNotes/algorithms.html">Algorithms</a>
+
     </nav>
 
     <p>
