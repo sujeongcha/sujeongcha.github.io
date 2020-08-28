@@ -175,6 +175,16 @@ th {
   color: rgba(55, 53, 47, 0.6);
 }
 
+.properties {
+  font-size: 0.825rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.ref {
+  font-size: 16px;
+}
+
 ol,
 ul {
   margin: 0;
