@@ -116,6 +116,20 @@ a.dropdown-btn:focus{
   font-weight: bold;
 }
 
+.dropdown-btn {
+  font-family: "Lato", sans-serif;
+  color: -internal-light-dark(buttontext, rgb(170, 170, 170));
+  display: inline-block;
+  text-align: center;
+  align-items: flex-start;
+  cursor: default;
+  background-color: -internal-light-dark(rgb(239, 239, 239), rgb(74, 74, 74));
+  box-sizing: border-box;
+  margin: 0em;
+  padding: 0px;
+  border-width: 0px;
+}
+
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
   display: none;
