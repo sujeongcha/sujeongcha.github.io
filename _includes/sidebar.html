@@ -52,9 +52,9 @@
         {% if node.title != null %}
           {% if node.layout == "page" %}
             {% if node.title == "Study Notes" %}
-              <button class="dropdown-btn">{{ node.title }}
+              <a class="dropdown-btn{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}
                 <i class="fa fa-caret-down"></i>
-              </button>
+              </a>
               <div class="dropdown-container">
                 <a href="#">NLP</a><br>
                 <a href="#">Algorithms</a>
