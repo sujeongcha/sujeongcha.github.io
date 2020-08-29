@@ -113,10 +113,6 @@ img {
   justify-content: space-between;
 }
 
-.column {
-  padding: 0 1em;
-}
-
 .column:first-child {
   padding-left: 0;
 }
