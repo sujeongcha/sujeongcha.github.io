@@ -21,7 +21,7 @@
 	left: -20px;
 	width: 3px;
 	height: 92%;
-	background: #202020;
+	background: rgba(0,0,0,0.5);
 }
 
 .timeline .column {
@@ -36,8 +36,12 @@
 	width: 10px;
 	height: 10px;
 	background: #fff;
-	border: 3.2px solid #202020;
+	border: 3.2px solid rgba(0,0,0,0.5);
 	border-radius: 10px;
+}
+
+.timeline .column .title h2:hover:before {
+	border: 3.2px solid #202020;
 }
 
 .timeline .column .title h2 {
