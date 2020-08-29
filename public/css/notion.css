@@ -353,6 +353,8 @@ input[type="checkbox"] {
   padding: 0;
   border-radius: 0;
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .code,
