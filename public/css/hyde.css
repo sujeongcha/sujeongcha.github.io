@@ -132,10 +132,14 @@ a.dropdown-btn:focus{
 
 /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
 .dropdown-container {
-  display: none;
+  display: flex;
+  gap: 5px
   background-color: #313131;
   padding-left: 8px;
-  font-size: 14px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-top: 5px;
+  font-size: 16px;
 }
 
 /* Optional: Style the caret down icon */
