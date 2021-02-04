@@ -15,12 +15,8 @@ title: Time Series Analysis on COVID-19 & Transporation Usage in NYC
 
 #### &#11088;&#11088;&#11088;&#11088;&#11088; but tastes like &#129314;?
 
-Online reviews have increasingly gained popularity and become an integral part of customers’ purchasing decisions. According to the Local Consumer Review Survey, 82% of customers regularly read online reviews and find
-information about local business, and 76% of people surveyed responded that they trust online reviews as much as the personal recommendations1. As a result, detecting fake reviews has gained much importance for many online
-venues in order to provide the customers more credibility and to protect the venue’s reputational risks. 
+Since the coronavirus 2019 (COVID-19) outbreak in New York City, people have been advised to keep social-distancing and avoid public transportation, which results in a steep change in the mobility patterns. This project investigates the level of impacts that COVID-19 has had on four means of transportation in NYC, including subway, taxi, for-hire vehicles (FHV, e.g. Uber/Lyft), and Citi Bike. 
 
-This project aims to compare different classification models that detect
-fake reviews. The best score was obtained by XGBoost model, combined with engineered features, Doc2Vec features from Gensim library, and TF-IDF probability estimate feature, with the average validation and test
-precision score reaching 0.446 and 0.440 respectively.
+In order to tackle this problem, we suggest two approaches: 1) analyze cross-correlation between COVID-19 and the ridership and 2) build a pre-COVID model to predict ridership during the post-COVID era to see the differences. The results from both approaches are consistent, demonstrating that all of the transportations have been affected by COVID-19. According to our findings, the FHV usage pattern has changed the most drastically and Citi Bike ridership has been the least affected by the pandemic.
 
-Final report and Python scripts can be found <a href="https://github.com/sujeongcha/TimeSeries-Transporation-and-Covid19/blob/main/%5BTS%20Final%5D%20Transportation%20Usage%20and%20Covid-19.pdf">HERE</a>.
+Final report and Python scripts can be found <a href="https://github.com/sujeongcha/TimeSeries-Transporation-and-Covid19/">HERE</a>.
