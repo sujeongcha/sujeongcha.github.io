@@ -3,7 +3,7 @@ layout: post
 title: Time Series Analysis on COVID-19 & Transporation Usage in NYC 
 ---
 
-![placeholder](https://sujeongcha.github.io/public/covidTransportation.jpg "Photo by Morning Brew on Unsplash")
+![placeholder](https://sujeongcha.github.io/public/covidTransportation.jpg "Photo by Paulo Silva on Unsplash")
 
 <div class="message">
   <ul>
