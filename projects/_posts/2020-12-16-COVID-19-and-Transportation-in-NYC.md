@@ -7,8 +7,8 @@ title: [Time Series Analysis] COVID-19 and Transporation Usage in NYC
 
 <div class="message">
   <ul>
-    <li> Task: Supervised learning > Classification </li>
-    <li> Models: XGBoost, Naive Bayes, Doc2Vec </li>
+    <li> Task: Time Series Analysis </li>
+    <li> Models: ARMA, Gaussian Process, Kalman Filtering, RNN </li>
     <li> Language: Python </li> 
   </ul>
 </div>
@@ -23,4 +23,4 @@ This project aims to compare different classification models that detect
 fake reviews. The best score was obtained by XGBoost model, combined with engineered features, Doc2Vec features from Gensim library, and TF-IDF probability estimate feature, with the average validation and test
 precision score reaching 0.446 and 0.440 respectively.
 
-Final report and Python scripts can be found <a href="https://github.com/sujeongcha/artificial-cilantro">HERE</a>.
+Final report and Python scripts can be found <a href="https://github.com/sujeongcha/TimeSeries-Transporation-and-Covid19/blob/main/%5BTS%20Final%5D%20Transportation%20Usage%20and%20Covid-19.pdf">HERE</a>.
