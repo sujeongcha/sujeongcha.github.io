@@ -13,7 +13,7 @@ title: Time Series Analysis on COVID-19 & Transporation Usage in NYC
   </ul>
 </div>
 
-#### &#11088;&#11088;&#11088;&#11088;&#11088; but tastes like &#129314;?
+How did COVID-19 change our daily lives?
 
 Since the coronavirus 2019 (COVID-19) outbreak in New York City, people have been advised to keep social-distancing and avoid public transportation, which results in a steep change in the mobility patterns. This project investigates the level of impacts that COVID-19 has had on four means of transportation in NYC, including subway, taxi, for-hire vehicles (FHV, e.g. Uber/Lyft), and Citi Bike. 
 
